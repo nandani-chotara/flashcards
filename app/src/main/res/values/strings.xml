@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">flashcards</string>
+    <string name="app_name">Flashcards</string>
+    <string name="desc">Please login to continue</string>
+    <string name="login_text">EMAIL</string>
+    <string name="pass_text">PASSWORD</string>
+    <string name="forgot">Forgot?</string>
+    <string name="sign_up">Don\'t have an account? <font fgcolor="white">Sign up</font></string>
 </resources>

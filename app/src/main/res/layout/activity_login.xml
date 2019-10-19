@@ -4,21 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".LoginActivity">
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="onLoginClicked"
-        android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.644" />
+
+   <ImageView
+       android:id="@+id/wave"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="1.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/logo"
+       app:layout_constraintVertical_bias="0.0"
+       app:srcCompat="@drawable/wave_shape" />
+
+   <EditText
+       android:id="@+id/login_box"
+       android:layout_width="221dp"
+       android:layout_height="46dp"
+       android:layout_marginTop="60dp"
+       android:background="@drawable/rounded_corner"
+       android:gravity="start|center"
+       android:hint="@string/login_text"
+       android:inputType="textEmailAddress"
+       android:padding="15dp"
+       android:textColor="#767676"
+       android:textSize="14sp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/description" />
+
+   <EditText
+       android:id="@+id/pass_box"
+       android:layout_width="221dp"
+       android:layout_height="46dp"
+       android:layout_marginTop="8dp"
+       android:background="@drawable/rounded_corner"
+       android:gravity="start|center"
+       android:hint="@string/pass_text"
+       android:inputType="textPassword"
+       android:padding="15dp"
+       android:textColor="#767676"
+       android:textSize="14sp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/login_box" />
+
+   <Button
+       android:id="@+id/forgot"
+       style="?android:attr/borderlessButtonStyle"
+       android:layout_width="69dp"
+       android:layout_height="24dp"
+       android:layout_marginTop="8dp"
+       android:background="@android:color/transparent"
+       android:text="@string/forgot"
+       android:textColor="#767676"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/pass_box" />
+
+   <ImageButton
+       android:id="@+id/login"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@android:color/transparent"
+       android:onClick="onLoginClicked"
+       app:layout_constraintBottom_toBottomOf="@+id/wave"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintVertical_bias="0.651"
+       app:srcCompat="@drawable/arrow_button" />
+
+   <Button
+       android:id="@+id/sign_up_button"
+       style="?android:attr/borderlessButtonStyle"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@android:color/transparent"
+       android:text="@string/sign_up"
+       android:textAllCaps="false"
+       android:textColor="#767676"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/login" />
+
+   <ImageView
+       android:id="@+id/logo"
+       android:layout_width="wrap_content"
+       android:layout_height="160dp"
+       android:layout_marginTop="80dp"
+       android:layout_marginBottom="4dp"
+       app:layout_constraintBottom_toTopOf="@+id/description"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:srcCompat="@drawable/logo" />
+
+   <TextView
+       android:id="@+id/description"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginStart="82dp"
+       android:layout_marginEnd="82dp"
+       android:text="@string/desc"
+       android:textColor="#767676"
+       android:textSize="16sp"
+       app:layout_constraintBottom_toTopOf="@+id/wave"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.5"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/logo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
