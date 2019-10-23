@@ -77,13 +77,19 @@
        app:layout_constraintVertical_bias="0.651"
        app:srcCompat="@drawable/arrow_button" />
 
+
    <Button
        android:id="@+id/sign_up_button"
+
+   <Button  
+       android:id="@+id/registerBtn"
+
        style="?android:attr/borderlessButtonStyle"
+       android:onClick="onClickRegister"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:background="@android:color/transparent"
-       android:text="@string/sign_up"
+       android:text="@string/registerBtn"
        android:textAllCaps="false"
        android:textColor="#767676"
        app:layout_constraintBottom_toBottomOf="parent"
@@ -132,5 +138,6 @@
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/loginBtn"
        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

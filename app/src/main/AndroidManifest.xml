@@ -10,7 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+
         <activity android:name=".LoginActivity"/>
+
+        <activity android:name=".LoginActivity" />
+
 
         <activity android:name=".DeckActivity"></activity>
         <activity
