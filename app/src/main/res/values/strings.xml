@@ -4,7 +4,7 @@
     <!-- Login activity-->
 
     <string name="desc">Please login to continue</string>
-
+    <string name="sign_up">Don\'t have an account? <font fgcolor="white">Sign up</font></string>
     <string name="forgot">Forgot?</string>
     <string name="registerBtn">Don\'t have an account? <font fgcolor="white">Sign up</font></string>
     <string name="title_activity_deck">DeckActivity</string>
