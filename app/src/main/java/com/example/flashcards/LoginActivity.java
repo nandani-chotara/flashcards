@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText username;
     EditText password;
     FirebaseAuth mAuth;
+    Button btnRegister;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -35,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.usernameInput);
         password = findViewById(R.id.passwordInput);
         btnLogin    = findViewById(R.id.loginBtn);
+        btnRegister = findViewById(R.id.registerBtn);
 
         sharedPreferences = getSharedPreferences("loginref",MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -71,10 +74,28 @@ public class LoginActivity extends AppCompatActivity {
         editor.commit();
     }
 
-
     public void logIn() {
         Intent myIntent = new Intent(this, MainActivity.class);
         this.startActivity(myIntent);
+    }
+
+    public void onClickRegister(View view){
+        mAuth = FirebaseAuth.getInstance();
+
+        if(username.length()>0 && password.length()>0) {
+            mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseDatabase.getInstance().getReference().child("users").child(task.getResult().getUser().getUid()).setValue("Empty");
+                        logIn();
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Invalid Email or Password. Please try again.", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+            });
+        }
     }
 
 }
