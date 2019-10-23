@@ -25,26 +25,7 @@ public class DeckActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deck);
-
-       /* FragmentManager fm = getSupportFragmentManager();
-        Fragment f = fm.findFragmentById(R.id.deck_fragment_container);
-        if (f==null){
-            f = new DeckFragment();
-            fm.beginTransaction().add(R.id.deck_fragment_container, f).commit();
-        }*/
-
-        /*Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DeckActivity.this, AddDeckActivity.class);
-                startActivity(intent);
-            }
-        });*/
+        setContentView(R.layout.deck_list_fragment_container);
         initialise();
     }
 
@@ -66,14 +47,19 @@ public class DeckActivity extends AppCompatActivity {
         mdeckNames.add("CP372");
         mdeckNames.add("CP372");
 
-
-        initRecyclerView();
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentById(R.id.deck_list_fragment_container);
+        if (f==null){
+            f = new DeckListFragment(mdeckNames);
+            fm.beginTransaction().add(R.id.deck_list_fragment_container, f).commit();
+        }
+        //initRecyclerView();
     }
-    private void initRecyclerView(){
-        RecyclerView recyclerView = findViewById(R.id.deck_recyclerView);
+   /* private void initRecyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, mdeckNames);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-    }
+    }*/
 
 }

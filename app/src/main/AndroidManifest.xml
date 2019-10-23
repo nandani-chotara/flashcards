@@ -14,7 +14,6 @@
             android:name=".FlashCardActivity"
             android:label="@string/title_activity_flash_card"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".DeckListActivity" />
         <activity android:name=".AddDeckActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".SplashActivity">

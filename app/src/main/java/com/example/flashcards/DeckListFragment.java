@@ -1,10 +1,12 @@
 package com.example.flashcards;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,24 +20,22 @@ import java.util.ArrayList;
 
 public class DeckListFragment extends androidx.fragment.app.Fragment {
 
-    private RecyclerView mRecyclerView;
-    private ItemAdapter mAdapter;
-    private ArrayList<Deck> decks = new ArrayList<>();
+    //private ItemAdapter mAdapter;
+    private ArrayList<String> decks = new ArrayList<>();
+
+    public DeckListFragment(ArrayList<String> mdeckNames) {
+        decks = mdeckNames;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.deck_list_fragment_layout, container,false);
 
-        for(int i=0;i<10;i++){
-            Deck d = new Deck("Deck number " + i);
-            decks.add(d);
-        }
-
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.deck_list_fragment_layout);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new ItemAdapter(decks);
-        mRecyclerView.setAdapter(mAdapter);
-
+        RecyclerView recyclerView = v.findViewById(R.id.recycler_view);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(getActivity(), decks);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return v;
     }
 
@@ -53,47 +53,57 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
         @Override
         public void onClick(View view) {
             //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
-            Intent intent = FlashCardActivity.newIntent(getActivity(), null);
+            Intent intent = new Intent(getActivity(), FlashCardActivity.class);
             //intent.putExtra("arg_food_name", foodObj.getFoodName());
             startActivity(intent);
         }
     }
 
-    public void addFood(Deck deck)
-    {
-        decks.add(deck);
-    }
-    public ArrayList<Deck> getFoods()
-    {
-        return decks;
-    }
+    private class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
 
-    private class ItemAdapter extends RecyclerView.Adapter<ItemHolder>{
+        private ArrayList<String> mDeckNames = new ArrayList<>();
+        private Context mContext;
 
-        private ArrayList<Deck> mDecks;
-
-        public ItemAdapter(ArrayList<Deck> tempDecks) {
-            mDecks = tempDecks;
+        public RecyclerViewAdapter(Context Context, ArrayList<String> DeckNames) {
+            mDeckNames = DeckNames;
+            mContext = Context;
         }
 
         @NonNull
         @Override
-        public ItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(getActivity());
-            return new ItemHolder(inflater, parent);
+        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.deck_list_item_layout,parent, false);
+            ViewHolder holder = new ViewHolder(view);
+            return holder;
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ItemHolder holder, int position) {
-            Deck deck = mDecks.get(position);
-
-            holder.deckObj = deck;
-            holder.deckName.setText(deck.getDeckName());
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+            holder.deckName.setText(mDeckNames.get(position));
+            holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, FlashCardActivity.class);
+                    intent.putExtra("deck_name", mDeckNames.get(position));
+                    mContext.startActivity(intent);
+                }
+            });
         }
 
         @Override
         public int getItemCount() {
-            return mDecks.size();
+            return mDeckNames.size();
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder{
+
+            TextView deckName;
+            RelativeLayout parentLayout;
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                deckName = itemView.findViewById(R.id.deck_name);
+                parentLayout = itemView.findViewById(R.id.parent_layout);
+            }
         }
     }
 }
