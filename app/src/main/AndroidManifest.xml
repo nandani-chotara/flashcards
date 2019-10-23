@@ -10,13 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <activity android:name=".LoginActivity"/>
 
-        <activity android:name=".LoginActivity" />
-
-
         <activity android:name=".DeckActivity"></activity>
+
         <activity
             android:name=".FlashCardActivity"
             android:label="@string/title_activity_flash_card"
