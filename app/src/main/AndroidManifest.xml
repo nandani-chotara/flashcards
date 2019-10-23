@@ -10,17 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".LoginActivity">
-
         <activity android:name=".DeckActivity"></activity>
         <activity
             android:name=".FlashCardActivity"
             android:label="@string/title_activity_flash_card"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddDeckActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashActivity">
-
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

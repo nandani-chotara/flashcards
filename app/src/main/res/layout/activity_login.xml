@@ -13,7 +13,7 @@
        android:layout_height="wrap_content"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintHorizontal_bias="1.0"
+       app:layout_constraintHorizontal_bias="0.0"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/logo"
        app:layout_constraintVertical_bias="0.0"
@@ -77,12 +77,13 @@
        app:layout_constraintVertical_bias="0.651"
        app:srcCompat="@drawable/arrow_button" />
 
-   <Button  
-       android:id="@+id/sign_up_button"
+   <Button
+       android:id="@+id/registerBtn"
        style="?android:attr/borderlessButtonStyle"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:background="@android:color/transparent"
+       android:onClick="onClickRegister"
        android:text="@string/sign_up"
        android:textAllCaps="false"
        android:textColor="#767676"
@@ -118,16 +119,5 @@
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
-
-    <Button
-        android:id="@+id/registerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickRegister"
-        android:text="@string/registerBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
