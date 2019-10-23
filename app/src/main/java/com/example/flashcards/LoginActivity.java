@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
 
         username = findViewById(R.id.usernameInput);
         password = findViewById(R.id.passwordInput);
-        btnLogin    = findViewById(R.id.loginBtn);
         btnRegister = findViewById(R.id.registerBtn);
+        btnLogin = findViewById(R.id.loginBtn);
 
         sharedPreferences = getSharedPreferences("loginref",MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void logIn() {
-        Intent myIntent = new Intent(this, MainActivity.class);
+        Intent myIntent = new Intent(this, DeckActivity.class);
         this.startActivity(myIntent);
     }
 
