@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Flashcards</string>
+    <string name="app_name">flashcards</string>
+    <!-- just for the sake of making it easier to keep track of, lets separate all the activity strings-->
+    <!-- Login activity-->
     <string name="desc">Please login to continue</string>
-    <string name="login_text">EMAIL</string>
-    <string name="pass_text">PASSWORD</string>
+    <string name="usernameHint">USERNAME</string>
+    <string name="passwordHint">PASSWORD</string>
     <string name="forgot">Forgot?</string>
     <string name="sign_up">Don\'t have an account? <font fgcolor="white">Sign up</font></string>
+
 </resources>

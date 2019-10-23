@@ -20,13 +20,13 @@
        app:srcCompat="@drawable/wave_shape" />
 
    <EditText
-       android:id="@+id/login_box"
+       android:id="@+id/usernameInput"
        android:layout_width="221dp"
        android:layout_height="46dp"
        android:layout_marginTop="60dp"
        android:background="@drawable/rounded_corner"
        android:gravity="start|center"
-       android:hint="@string/login_text"
+       android:hint="@string/usernameHint"
        android:inputType="textEmailAddress"
        android:padding="15dp"
        android:textColor="#767676"
@@ -36,20 +36,20 @@
        app:layout_constraintTop_toBottomOf="@+id/description" />
 
    <EditText
-       android:id="@+id/pass_box"
+       android:id="@+id/passwordInput"
        android:layout_width="221dp"
        android:layout_height="46dp"
        android:layout_marginTop="8dp"
        android:background="@drawable/rounded_corner"
        android:gravity="start|center"
-       android:hint="@string/pass_text"
+       android:hint="@string/passwordHint"
        android:inputType="textPassword"
        android:padding="15dp"
        android:textColor="#767676"
        android:textSize="14sp"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/login_box" />
+       app:layout_constraintTop_toBottomOf="@+id/usernameInput" />
 
    <Button
        android:id="@+id/forgot"
@@ -62,14 +62,14 @@
        android:textColor="#767676"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/pass_box" />
+       app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
 
    <ImageButton
-       android:id="@+id/login"
+       android:id="@+id/loginBtn"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:background="@android:color/transparent"
-       android:onClick="onLoginClicked"
+       android:onClick="onClickLogin"
        app:layout_constraintBottom_toBottomOf="@+id/wave"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +77,7 @@
        app:layout_constraintVertical_bias="0.651"
        app:srcCompat="@drawable/arrow_button" />
 
-   <Button
+   <Button  
        android:id="@+id/sign_up_button"
        style="?android:attr/borderlessButtonStyle"
        android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@+id/login" />
+       app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
    <ImageView
        android:id="@+id/logo"
