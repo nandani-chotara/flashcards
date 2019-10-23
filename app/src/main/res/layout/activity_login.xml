@@ -77,7 +77,7 @@
        app:layout_constraintVertical_bias="0.651"
        app:srcCompat="@drawable/arrow_button" />
 
-   <Button  
+   <Button
        android:id="@+id/registerBtn"
        style="?android:attr/borderlessButtonStyle"
        android:onClick="onClickRegister"
@@ -86,6 +86,7 @@
        android:background="@android:color/transparent"
        android:textAllCaps="false"
        android:textColor="#767676"
+       android:text="@string/registerBtn"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintHorizontal_bias="0.497"
