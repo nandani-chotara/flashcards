@@ -40,38 +40,37 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.registerBtn);
         btnLogin = findViewById(R.id.loginBtn);
 
-        sharedPreferences = getSharedPreferences("loginref",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("loginref", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        username.setText(sharedPreferences.getString("username",null));
+        username.setText(sharedPreferences.getString("username", null));
 
     }
 
-    public void onClickLogin(View view){
+    public void onClickLogin(View view) {
         mAuth = FirebaseAuth.getInstance();
 
-        if(username.length()>0 && password.length()>0){
+        if (username.length() > 0 && password.length() > 0) {
             mAuth.signInWithEmailAndPassword(username.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         logIn();
-                    }
-                    else {
+                    } else {
                         Toast toast = Toast.makeText(getApplicationContext(), "Invalid Email or Password. Please try again.", Toast.LENGTH_SHORT);
                         toast.show();
                     }
                 }
             });
         } else {
-            Toast toast_2 = Toast.makeText(getApplicationContext(), "Please enter username and/or password",Toast.LENGTH_SHORT);
+            Toast toast_2 = Toast.makeText(getApplicationContext(), "Please enter username and/or password", Toast.LENGTH_SHORT);
             toast_2.show();
         }
 
         String user = username.getText().toString();
 
-        editor.putBoolean("savelogin",true);
-        editor.putString("username",user);
+        editor.putBoolean("savelogin", true);
+        editor.putString("username", user);
         editor.commit();
     }
 
@@ -80,10 +79,15 @@ public class LoginActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void onClickRegister(View view){
+    public void signUp(View view) {
+        Intent myIntent = new Intent(this, RegisterActivity.class);
+        this.startActivity(myIntent);
+    }
+
+    public void onClickRegister(View view) {
         mAuth = FirebaseAuth.getInstance();
 
-        if(username.length()>0 && password.length()>0) {
+        if (username.length() > 0 && password.length() > 0) {
             mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -98,5 +102,4 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
-
 }
