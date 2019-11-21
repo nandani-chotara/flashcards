@@ -42,7 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         FirebaseDatabase.getInstance().getReference().child("users").child(task.getResult().getUser().getUid()).setValue("Empty");
-                        logIn();
+                        Toast toast = Toast.makeText(getApplicationContext(), "Sign up complete!", Toast.LENGTH_SHORT);
+                        toast.show();
+                        signUp();
                     } else {
                         Toast toast = Toast.makeText(getApplicationContext(), "Invalid Email or Password. Please try again.", Toast.LENGTH_SHORT);
                         toast.show();
@@ -51,8 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
             });
         }
     }
-    public void logIn() {
-        Intent myIntent = new Intent(this, DeckActivity.class);
+    public void signUp() {
+        Intent myIntent = new Intent(this, LoginActivity.class);
         this.startActivity(myIntent);
     }
 }

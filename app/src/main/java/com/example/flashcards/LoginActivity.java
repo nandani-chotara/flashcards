@@ -3,6 +3,7 @@ package com.example.flashcards;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,11 +22,22 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //login stuff
     ImageButton btnLogin;
     EditText username;
     EditText password;
+    EditText firstName;
+    EditText lastNmae;
     FirebaseAuth mAuth;
+
+    //register stuff
     Button btnRegister;
+    EditText rUsername;
+    EditText rPassword;
+    EditText rFirstName;
+    EditText rLastNmae;
+
+    Dialog myDialog;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -44,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
 
         username.setText(sharedPreferences.getString("username", null));
+
+        myDialog = new Dialog(this);
 
     }
 
@@ -79,21 +94,36 @@ public class LoginActivity extends AppCompatActivity {
         this.startActivity(myIntent);
     }
 
-    public void signUp(View view) {
+    public void signUp() {
         Intent myIntent = new Intent(this, RegisterActivity.class);
         this.startActivity(myIntent);
+    }
+
+    public void signUpButton(View view) {
+        TextView txtClose;
+        myDialog.setContentView(R.layout.activity_register);
+        txtClose = myDialog.findViewById(R.id.txtClose);
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.show();
     }
 
     public void onClickRegister(View view) {
         mAuth = FirebaseAuth.getInstance();
 
-        if (username.length() > 0 && password.length() > 0) {
-            mAuth.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        if (rUsername.length() > 0 && rPassword.length() > 0) {
+            mAuth.createUserWithEmailAndPassword(rUsername.getText().toString(), rPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         FirebaseDatabase.getInstance().getReference().child("users").child(task.getResult().getUser().getUid()).setValue("Empty");
-                        logIn();
+                        Toast toast = Toast.makeText(getApplicationContext(), "Sign up complete!", Toast.LENGTH_SHORT);
+                        toast.show();
+                        myDialog.dismiss();
                     } else {
                         Toast toast = Toast.makeText(getApplicationContext(), "Invalid Email or Password. Please try again.", Toast.LENGTH_SHORT);
                         toast.show();

@@ -83,7 +83,7 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:background="@android:color/transparent"
-       android:onClick="signUp"
+       android:onClick="signUpButton"
        android:text="@string/sign_up"
        android:textAllCaps="false"
        android:textColor="#767676"
