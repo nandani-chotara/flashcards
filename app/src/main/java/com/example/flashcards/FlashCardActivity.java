@@ -9,43 +9,87 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Parcelable;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class FlashCardActivity extends AppCompatActivity {
+public class  FlashCardActivity extends AppCompatActivity {
+    //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
+    ListView cardview;
+    Button Addbutton;
+    EditText GetValue;
+    String[] ListElements = new String[] {
 
-    /*public static Intent newIntent(Context packageContext, Deck deckObj) {
-        Intent intent = new Intent(packageContext, FlashCardActivity.class);
-        intent.putExtra("args_deck_id", (Serializable) deckObj);
-        return intent;
-    }*/
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flashcard);
+        setContentView(R.layout.activity_flash_card);
 
-        getIncomingIntent();
+        cardview = (ListView) findViewById(R.id.cardview1);
+        Addbutton = (Button) findViewById(R.id.button1);
+        GetValue = (EditText) findViewById(R.id.editText1);
 
+        final List< String > ListElementsArrayList = new ArrayList< String >
+                (Arrays.asList(ListElements));
+
+
+        final ArrayAdapter< String > adapter = new ArrayAdapter < String >
+                (FlashCardActivity.this, android.R.layout.simple_list_item_1,
+                        ListElementsArrayList);
+
+        cardview.setAdapter(adapter);
+
+        Addbutton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                ListElementsArrayList.add(GetValue.getText().toString());
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 
-    private void getIncomingIntent(){
-        if(getIntent().hasExtra("deck_name")){
-            String deckname = getIntent().getStringExtra("deck_name");
-            setName(deckname);
+    class flashCard {
+        String question;
+        String answer;
+        int id;
+
+        flashCard(String question, String answer, int id) {
+            this.question = question;
+            this.answer = answer;
+            this.id = id;
         }
 
     }
 
-    private void setName(String deckname){
-        TextView deckName = findViewById(R.id.deckNameFlashcardAvtivity);
-        deckName.setText(deckname);
+    private List<FlashCardActivity.flashCard> flashcards;
+
+
+    private void initializeData() {
+        flashcards = new ArrayList<>();
+        flashcards.add(new FlashCardActivity.flashCard("1+1", "2",0));
+        flashcards.add(new FlashCardActivity.flashCard("1+2", "3",1));
+        flashcards.add(new FlashCardActivity.flashCard("56 + 2", "58",2));
+
+
     }
+
+
 
 }
