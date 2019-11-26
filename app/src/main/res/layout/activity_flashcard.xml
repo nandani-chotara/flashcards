@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-    <TextView
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText1"
+        android:layout_centerHorizontal="true"
+        android:text="+" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:hint="Add FlashCard" />
+
+    <CardView
+        android:id="@+id/CardView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/deckNameFlashcardAvtivity"
-        android:text="Canada"
-        android:textSize="20sp">
-    </TextView>
-</LinearLayout>
+        android:layout_below="@+id/button1"
+        android:layout_centerHorizontal="true" >
+    </CardView>
+</RelativeLayout>
