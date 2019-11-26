@@ -28,6 +28,7 @@ import java.util.List;
 
 public class  FlashCardActivity extends AppCompatActivity {
     //LIST OF ARRAY STRINGS WHICH WILL SERVE AS LIST ITEMS
+    Toolbar toolbar;
     ListView cardview;
     Button Addbutton;
     EditText GetValue;
@@ -39,6 +40,12 @@ public class  FlashCardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flash_card);
+
+        toolbar = findViewById(R.id.flashcard_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+
+        getIncomingIntent();
 
         cardview = (ListView) findViewById(R.id.cardview1);
         Addbutton = (Button) findViewById(R.id.button1);
@@ -65,12 +72,23 @@ public class  FlashCardActivity extends AppCompatActivity {
         });
     }
 
-    class flashCard {
+    private void getIncomingIntent(){
+        if(getIntent().hasExtra("deck_name")){
+            String deckname = getIntent().getStringExtra("deck_name");
+            setName(deckname);
+        }
+    }
+
+    private void setName(String deckname){
+        toolbar.setTitle("Deck: " + deckname);
+    }
+
+    class FlashCard {
         String question;
         String answer;
         int id;
 
-        flashCard(String question, String answer, int id) {
+        FlashCard(String question, String answer, int id) {
             this.question = question;
             this.answer = answer;
             this.id = id;
@@ -78,14 +96,14 @@ public class  FlashCardActivity extends AppCompatActivity {
 
     }
 
-    private List<FlashCardActivity.flashCard> flashcards;
+    private List<FlashCard> flashcards;
 
 
     private void initializeData() {
         flashcards = new ArrayList<>();
-        flashcards.add(new FlashCardActivity.flashCard("1+1", "2",0));
-        flashcards.add(new FlashCardActivity.flashCard("1+2", "3",1));
-        flashcards.add(new FlashCardActivity.flashCard("56 + 2", "58",2));
+        flashcards.add(new FlashCard("1+1", "2",0));
+        flashcards.add(new FlashCard("1+2", "3",1));
+        flashcards.add(new FlashCard("56 + 2", "58",2));
 
 
     }
