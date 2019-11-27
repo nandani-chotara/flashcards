@@ -1,9 +1,6 @@
 package com.example.flashcards;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,15 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.textfield.TextInputEditText;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.content.Context.MODE_MULTI_PROCESS;
-import static android.content.Context.MODE_PRIVATE;
 
 public class DeckListFragment extends androidx.fragment.app.Fragment {
 
@@ -108,6 +97,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
             super(inflater.inflate(R.layout.deck_list_item_layout, parent, false));
             deckName = (TextView) itemView.findViewById(R.id.deck_name);
 
+            //Deck d = deckRepository.getDecks().get(getAdapterPosition());
 
 
             options_btn = (ImageButton) itemView.findViewById(R.id.options_imgBtn);
@@ -118,13 +108,18 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
                     popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem menuItem) {
+                            Deck d = deckRepository.getDecks().get(getAdapterPosition());
                             switch(menuItem.getItemId()){
                                 case R.id.edit:
-                                    Intent intent = new Intent(getContext(), AddDeckActivity.class);
+                                    //String key = d.getUuid();
+                                    String key=d.getUuid();
+                                    Intent intent = new Intent(getContext(), EditDeckActivity.class);
+                                    intent.putExtra("key", key);
+                                    intent.putExtra("deckName", deckName.getText().toString());
                                     startActivity(intent);
                                     return true;
                                 case R.id.delete:
-                                    Deck d = deckRepository.getDecks().get(getAdapterPosition());
+
                                     //Deck deck = new Deck(deckName.getText().toString());
                                     //DeckStorage.get(getActivity()).removeDeck(deck);
                                     DeckRepository.getInstance().removeDeck(d);

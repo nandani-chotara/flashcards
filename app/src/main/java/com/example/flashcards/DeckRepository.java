@@ -1,7 +1,6 @@
 package com.example.flashcards;
 
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -20,23 +19,27 @@ public class DeckRepository {
     private static DeckRepository instance;
     private DatabaseReference databaseReference;
     private ArrayList<Deck> decks = new ArrayList<>();
-    private List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
+    public List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
 
     public interface DataLoadedListener{
         void onDataLoaded();
     }
 
-    public static DeckRepository getInstance() {
+    protected DeckRepository(){
+        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("deck");
+        init();
+    }
+    /*public static DeckRepository getInstance() {
         Log.i(" Deck get insts", "in get Instance");
         if (instance == null) {
             instance = new DeckRepository();
         }
         return instance;
-    }
+    }*/
 
-    private DeckRepository(){
-        Log.i("Deck Repo", "in deck repo");
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("deck");
+    protected void init(){
+        //Log.i("Deck Repo", "in deck repo");
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -49,7 +52,7 @@ public class DeckRepository {
                     decks.add(deck);
                 }
 
-                Log.i("Deck data loaded size", String.valueOf(DeckRepository.this.dataLoadedListeners.size()));
+                //Log.i("Deck data loaded size", String.valueOf(DeckRepository.this.dataLoadedListeners.size()));
                 DeckRepository.this.dataLoadedListeners.forEach(x -> x.onDataLoaded());
             }
 
@@ -60,12 +63,25 @@ public class DeckRepository {
         });
     }
 
+    public static DeckRepository getInstance() {
+        if (instance == null) {
+            instance = new DeckRepository();
+        }
+        return instance;
+    }
+
+    public DeckRepository(DatabaseReference databaseReference) {
+        this.databaseReference = databaseReference;
+        init();
+    }
+
     public ArrayList<Deck> getDecks() {
         return decks;
     }
 
     public void addDeck(Deck deck) {
-        databaseReference.push().setValue(deck);
+        if(deck!=null){
+        databaseReference.push().setValue(deck);}
     }
 
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
@@ -75,5 +91,9 @@ public class DeckRepository {
     public void removeDeck(Deck deck) {
 
         databaseReference.child(deck.getUuid()).removeValue();
+    }
+
+    public void updateDeck(String key, Deck deck){
+        databaseReference.child(key).setValue(deck);
     }
 }
