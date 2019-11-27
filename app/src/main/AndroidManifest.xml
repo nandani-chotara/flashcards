@@ -11,11 +11,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".EditDeckActivity"></activity>
         <activity android:name=".DeckActivity" />
-        <activity
-            android:name=".FlashCardActivity"
-            android:label="@string/title_activity_flash_card"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddDeckActivity" />
+        <activity android:name=".FlashcardRecyclerViewActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".FlashcardAddActivity" />
 
         <activity
             android:name=".LoginActivity"

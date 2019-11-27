@@ -142,7 +142,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
                 @Override
                 public void onClick(View view) {
                     //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), FlashCardActivity.class);
+                    Intent intent = new Intent(getActivity(), FlashcardRecyclerViewActivity.class);
                     //intent.putExtra("arg_food_name", foodObj.getFoodName());
                     startActivity(intent);
                 }
