@@ -50,7 +50,7 @@ public class DeckActivity extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         Fragment f = fm.findFragmentById(R.id.deck_list_fragment_container);
         if (f==null){
-            f = new DeckListFragment(mdeckNames);
+            f = new DeckListFragment();
             fm.beginTransaction().add(R.id.deck_list_fragment_container, f).commit();
         }
         //initRecyclerView();

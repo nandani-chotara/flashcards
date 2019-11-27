@@ -1,11 +1,18 @@
 package com.example.flashcards;
 
-public class Deck {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Deck implements Serializable {
     private String deckName;
-    private String deckDescription;
+    private String Uuid;
+
+    public Deck() {
+        // Default constructor required for Firebase
+    }
 
     public Deck(String name) {
-        deckName = name;
+        this.deckName = name;
     }
 
     public String getDeckName() {
@@ -13,14 +20,13 @@ public class Deck {
     }
 
     public void setDeckName(String name) {
-        deckName = name;
+        this.deckName = name;
     }
 
-    public String getDeckDescription() {
-        return deckDescription;
+    public String getUuid() {
+        return Uuid;
     }
-
-    public void setDeckDescription(String description) {
-       deckDescription = description;
+    public void setUuid(String uuid) {
+        Uuid = uuid;
     }
 }
