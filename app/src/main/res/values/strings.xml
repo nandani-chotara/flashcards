@@ -4,6 +4,7 @@
     <!-- Login activity-->
 
     <string name="desc">Please login to continue</string>
+
     <string name="forgot">Forgot?</string>
     <string name="sign_up">Don\'t have an account? <font fgcolor="white">Sign up</font></string>
 
@@ -16,5 +17,8 @@
     <string name="title_activity_deck">DeckActivity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_flash_card">FlashCardActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
