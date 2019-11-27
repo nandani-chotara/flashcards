@@ -11,7 +11,7 @@
     <string name="registerBtn">Sign up</string>
     <string name="username">Username</string>
     <string name="usernameHint">Enter username here</string>
-    <string name="password">Username</string>
+    <string name="password">Password</string>
     <string name="passwordHint">Enter password here</string>
     <string name="title_activity_deck">DeckActivity</string>
     <string name="action_settings">Settings</string>
