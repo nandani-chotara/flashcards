@@ -22,7 +22,7 @@ public class FlashcardRVAdapter extends RecyclerView.Adapter<FlashcardRVAdapter.
 
         FlashcardViewHolder(View itemView) {
             super(itemView);
-            cv = itemView.findViewById(R.id.cardView);
+            cv = itemView.findViewById(R.id.cv);
             question = itemView.findViewById(R.id.question);
             answer = itemView.findViewById(R.id.answer);
             seeAnswerButton = itemView.findViewById(R.id.seeAnswerButton);
