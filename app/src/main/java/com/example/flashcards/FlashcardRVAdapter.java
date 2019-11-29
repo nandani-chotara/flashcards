@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FlashcardRVAdapter extends RecyclerView.Adapter<FlashcardRVAdapter.FlashcardViewHolder> {
@@ -42,6 +43,7 @@ public class FlashcardRVAdapter extends RecyclerView.Adapter<FlashcardRVAdapter.
                 }
             });
         }
+
     }
 
     List<Flashcard> flashcards;
@@ -71,6 +73,11 @@ public class FlashcardRVAdapter extends RecyclerView.Adapter<FlashcardRVAdapter.
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
+    }
+
+    public void setFlashcards(ArrayList<Flashcard> flashcards){
+        this.flashcards = flashcards;
+        this.notifyDataSetChanged();
     }
 
 
