@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,24 +14,38 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FlashcardRecyclerViewActivity extends AppCompatActivity {
 
-    static  List<Flashcard> flashcards;
+    private ArrayList<Flashcard> flashcards = new ArrayList<>();
     private RecyclerView rv;
     private Toolbar toolbar;
     private TextView deckSize;
+    //private FlashcardRepository flashcardRepository;
+    FlashcardRVAdapter adapter;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.flashcard_recyclerview_activity);
+        //flashcardRepository = FlashcardRepository.getInstance();
+
+
+        if (getIntent().hasExtra("key")) {
+            key = getIntent().getStringExtra("key");
+        }
+
+
+        flashcards = DeckRepository.getInstance().getCardOfDeck(key);
+        Deck d = DeckRepository.getInstance().getDeck(key);
+        d.setFlashcards(flashcards);
 
         toolbar = findViewById(R.id.flashcard_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("testing");
         getIncomingIntent();
+
 
         rv = findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -40,21 +54,37 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
 
         rv.addItemDecoration(new FlashcardMarginItem(20));
 
-        initializeData();
+        //initializeData();
         initializeAdapter();
 
         deckSize = findViewById(R.id.deckSize);
-        deckSize.setText(String.valueOf(flashcards.size()));
+        //deckSize.setText(String.valueOf(flashcards.size()));
 
         FloatingActionButton fabAddFlashcard = findViewById(R.id.fabAddFlashcard);
         fabAddFlashcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), FlashcardAddActivity.class);
+                intent.putExtra("key", key);
                 intent.putExtra("flashcards", (Serializable) flashcards);
                 startActivity(intent);
             }
         });
+
+        /*flashcardRepository.addDataLoadedListener(new DeckRepository.DataLoadedListener() {
+            @Override
+            public void onDataLoaded() {
+                adapter.setFlashcards();
+            }
+        });*/
+    }
+
+    @Override
+    public void onResume()
+    {
+        //Log.i("Deck in resume", "in resume");
+        super.onResume();
+        adapter.notifyDataSetChanged();
     }
 
     private void getIncomingIntent() {
@@ -69,7 +99,7 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
     }
 
     private void initializeData() {
-        flashcards = new ArrayList<>();
+        //flashcards = new ArrayList<>();
         Flashcard card1 = new Flashcard();
         card1.setQuestion("5+5");
         card1.setAnswer("10");
@@ -99,7 +129,9 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
     }
 
     private void initializeAdapter() {
-        FlashcardRVAdapter adapter = new FlashcardRVAdapter(flashcards);
+        //get cards of the particular deck, may be use key
+
+        adapter = new FlashcardRVAdapter(flashcards);
         rv.setAdapter(adapter);
     }
 }

@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class Flashcard implements Serializable {
         private String question;
         private String answer;
-//        private String Uuid;
 
         public Flashcard() {
         }
+
 
         public String getQuestion() {
             return question;
@@ -26,12 +26,9 @@ public class Flashcard implements Serializable {
             this.answer = answer;
         }
 
-//        public String getUuid() {
-//            return Uuid;
-//        }
-//        public void setUuid(String uuid) {
-//            Uuid = uuid;
-//        }
+
+
+
 }
 
 

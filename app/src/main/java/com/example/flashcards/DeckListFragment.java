@@ -20,11 +20,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeckListFragment extends androidx.fragment.app.Fragment {
 
     //private ItemAdapter mAdapter;
-    private ArrayList<Deck> decksList = new ArrayList<>();
+    private List<Deck> decksList = new ArrayList<>();
     RecyclerView mrecyclerView;
     private ItemAdapter mAdapter;
     private DeckRepository deckRepository;
@@ -69,13 +70,13 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
         mAdapter.setDecks(deckRepository.getDecks());
        });*/
 
-       deckRepository.addDataLoadedListener(new DeckRepository.DataLoadedListener() {
-           @Override
-           public void onDataLoaded() {
-               mAdapter.setDecks(deckRepository.getDecks());
-           }
-       });
 
+        deckRepository.addDataLoadedListener(new DeckRepository.DataLoadedListener() {
+            @Override
+            public void onDataLoaded() {
+                mAdapter.setDecks(deckRepository.getDecks());
+            }
+        });
         return v;
     }
 
@@ -99,9 +100,9 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
 
             //Deck d = deckRepository.getDecks().get(getAdapterPosition());
 
-
             options_btn = (ImageButton) itemView.findViewById(R.id.options_imgBtn);
             options_btn.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View view) {
                     PopupMenu popup = new PopupMenu(getContext(), view);
@@ -142,8 +143,11 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
                 @Override
                 public void onClick(View view) {
                     //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
+                    Deck d = deckRepository.getDecks().get(getAdapterPosition());
+                    String key=d.getUuid();
                     Intent intent = new Intent(getActivity(), FlashcardRecyclerViewActivity.class);
-                    //intent.putExtra("arg_food_name", foodObj.getFoodName());
+                    //intent.putExtra("arg_deck_name", d.getDeckName());
+                    intent.putExtra("key",key);
                     startActivity(intent);
                 }
             });
@@ -153,15 +157,12 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
             deckName.setText(deck.getDeckName());
         }
 
-
     }
-
-
 
     private class ItemAdapter extends RecyclerView.Adapter<ItemHolder>{  //this class is responsible for creating deck item view, the above one.
 
-        private ArrayList<Deck> mDecks;
-        public ItemAdapter(ArrayList<Deck> tempDeck)
+        private List<Deck> mDecks;
+        public ItemAdapter(List<Deck> tempDeck)
         {
             this.mDecks = tempDeck;
         }
@@ -184,20 +185,10 @@ public class DeckListFragment extends androidx.fragment.app.Fragment {
             return mDecks.size();
         }
 
-        public void setDecks(ArrayList<Deck> decks){
+        public void setDecks(List<Deck> decks){
             this.mDecks = decks;
             this.notifyDataSetChanged();
         }
 
-        /*public class ViewHolder extends RecyclerView.ViewHolder{
-
-            TextView deckName;
-            RelativeLayout parentLayout;
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-                deckName = itemView.findViewById(R.id.deck_name);
-                parentLayout = itemView.findViewById(R.id.parent_layout);
-            }
-        }*/
     }
 }
