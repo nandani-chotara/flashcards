@@ -21,7 +21,6 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
     private RecyclerView rv;
     private Toolbar toolbar;
     private TextView deckSize;
-    //private FlashcardRepository flashcardRepository;
     FlashcardRVAdapter adapter;
     String key;
 
@@ -29,7 +28,7 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.flashcard_recyclerview_activity);
-        //flashcardRepository = FlashcardRepository.getInstance();
+
 
 
         if (getIntent().hasExtra("key")) {
@@ -58,7 +57,7 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
         initializeAdapter();
 
         deckSize = findViewById(R.id.deckSize);
-        //deckSize.setText(String.valueOf(flashcards.size()));
+        deckSize.setText(String.valueOf(flashcards.size()));
 
         FloatingActionButton fabAddFlashcard = findViewById(R.id.fabAddFlashcard);
         fabAddFlashcard.setOnClickListener(new View.OnClickListener() {

@@ -35,7 +35,6 @@ public class FlashcardAddActivity extends AppCompatActivity {
                 newCard.setQuestion(textInputEditQuestion.getText().toString());
                 newCard.setAnswer(textInputEditAnswer.getText().toString());
                 DeckRepository.getInstance().addCardstoDeck(key, newCard);
-                //FlashcardRepository.getInstance().addFlashcard(newCard);
                 finish();
             }
         });
