@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textSize="20sp"
+            android:paddingBottom="10dp"/>
+
+        <Button
+            android:id="@+id/seeAnswerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/question"
+            android:layout_centerHorizontal="true"
+            android:text="Answer"
+            android:textSize="20sp"
+            android:background="@drawable/rounded_button"
+            android:textColor="#FFFFFF"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            />
+
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/question"
+            android:visibility="gone"
+            android:textSize="15sp"
+            android:paddingBottom="10dp"
+             />
+
+        <Button
+            android:id="@+id/hideAnswerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/answer"
+            android:layout_centerHorizontal="true"
+            android:text="Hide"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:background="@drawable/rounded_button"
+            android:textColor="#FFFFFF"
+            android:paddingEnd="15dp"
+            android:paddingStart="15dp"
+            />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,19 +1,10 @@
 package com.example.flashcards;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.View;
 
 import java.util.ArrayList;
 
@@ -22,12 +13,15 @@ public class DeckActivity extends AppCompatActivity {
     //vars
     private ArrayList<String> mdeckNames = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deck_list_fragment_container);
+
         initialise();
     }
+
 
     private void initialise(){
         mdeckNames.add("CP104");

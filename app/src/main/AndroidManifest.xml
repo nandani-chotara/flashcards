@@ -9,27 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditDeckActivity"></activity>
-        <activity android:name=".DeckActivity" />
+        <activity android:name=".EditDeckActivity" />
         <activity
-            android:name=".FlashCardActivity"
-            android:label="@string/title_activity_flash_card"
+            android:name=".DeckActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AddDeckActivity" />
-
+        <activity
+            android:name=".FlashcardRecyclerViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FlashcardAddActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-    <activity android:name=".SplashActivity">
-          <intent-filter>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-         </activity>
-
-        <activity android:name=".MainActivity"></activity>
+        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

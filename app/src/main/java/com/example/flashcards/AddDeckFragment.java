@@ -74,8 +74,8 @@ public class AddDeckFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Deck deck = new Deck(deckName);
-                DeckRepository.getInstance().addDeck(deck);
+                //Deck deck = new Deck(deckName);
+                DeckRepository.getInstance().addDeck(deckName);
                 //DeckStorage.get(getActivity()).addDeck(deck);
                 getActivity().finish();
             }
