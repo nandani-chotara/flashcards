@@ -53,7 +53,9 @@ public class DeckRepository {
                 }
 
                 //Log.i("Deck data loaded size", String.valueOf(DeckRepository.this.dataLoadedListeners.size()));
-                DeckRepository.this.dataLoadedListeners.forEach(x -> x.onDataLoaded());
+                for (DataLoadedListener dataLoadedListener : DeckRepository.this.dataLoadedListeners) {
+                    dataLoadedListener.onDataLoaded();
+                }
             }
 
             @Override
