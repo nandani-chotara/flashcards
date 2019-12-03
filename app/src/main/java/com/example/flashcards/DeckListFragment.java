@@ -197,6 +197,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
                                     Intent intent = new Intent(getContext(), EditDeckActivity.class);
                                     intent.putExtra("key", key);
                                     intent.putExtra("deckName", deckName.getText().toString());
+                                    intent.putExtra("deckDescription", deckDesp.getText().toString());
                                     startActivity(intent);
                                     return true;
                                 case R.id.delete:
