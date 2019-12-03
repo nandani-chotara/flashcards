@@ -5,7 +5,8 @@
     android:id="@+id/parent_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
@@ -26,15 +27,15 @@
             android:id="@+id/add_cardsBtn"
             android:layout_width="78dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="11dp"
+            android:background="@color/colorPrimary"
             android:text="Add Cards"
-            android:textSize="10dp"
+            android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/options_imgBtn"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.714"
-            android:background="@color/colorPrimary"/>
+            app:layout_constraintVertical_bias="0.603" />
 
         <ImageButton
             android:id="@+id/options_imgBtn"
@@ -46,13 +47,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.913" />
+            app:layout_constraintVertical_bias="0.653" />
 
         <TextView
             android:id="@+id/deck_name"
-            android:layout_width="175dp"
-            android:layout_height="57dp"
-            android:padding="12dp"
+            android:layout_width="176dp"
+            android:layout_height="46dp"
+            android:padding="8dp"
             android:text="Placeholder"
             android:textSize="20sp"
             app:layout_constraintTop_toTopOf="parent"
@@ -66,14 +67,14 @@
             android:layout_marginTop="1dp"
             android:layout_marginEnd="67dp"
             android:layout_marginBottom="18dp"
-            android:paddingLeft="12dp"
+            android:paddingLeft="8dp"
             android:text="Description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/add_cardsBtn"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/deck_name"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

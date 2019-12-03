@@ -170,14 +170,18 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
     private class ItemHolder extends RecyclerView.ViewHolder
     {
         private TextView deckName;
+        private TextView deckDesp;
         private ImageButton options_btn;
         private Button add_cardsBtn;
 
 
         public ItemHolder(LayoutInflater inflater, ViewGroup parent){
-            super(inflater.inflate(R.layout.deck_list_item_layout, parent, false));
+            super(inflater.inflate(R.layout.deck_list_item_layout2, parent, false));
+            //itemView.findViewById(R.id.constraint).setBackgroundColor(Color.parseColor("#ef9a9a"));
             deckName = (TextView) itemView.findViewById(R.id.deck_name);
+            deckDesp = (TextView) itemView.findViewById(R.id.deck_desp);
             options_btn = (ImageButton) itemView.findViewById(R.id.options_imgBtn);
+
             options_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -237,6 +241,21 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
 
         public void bind(Deck deck){
             deckName.setText(deck.getDeckName());
+            deckDesp.setText(deck.getDescription());
+
+            if(deck.getDeckColor().length()!=0) {
+                if (deck.getDeckColor().equals("pink")) {
+                    itemView.findViewById(R.id.constraint).setBackgroundResource(R.color.pink);
+                } else if (deck.getDeckColor().equals("purple")) {
+                    itemView.findViewById(R.id.constraint).setBackgroundResource(R.color.purple);
+                } else if (deck.getDeckColor().equals("orange")) {
+                    itemView.findViewById(R.id.constraint).setBackgroundResource(R.color.orange);
+                } else if (deck.getDeckColor().equals("green")) {
+                    itemView.findViewById(R.id.constraint).setBackgroundResource(R.color.green);
+                } else if (deck.getDeckColor().equals("yellow")) {
+                    itemView.findViewById(R.id.constraint).setBackgroundResource(R.color.yellow);
+                }
+            }
         }
 
     }
