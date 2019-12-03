@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -17,9 +19,12 @@ import com.google.android.material.textfield.TextInputEditText;
 public class AddDeckFragment extends Fragment {
 
     private TextInputEditText mDeckName;
+    private TextInputEditText mDeckDesp;
     private Button mAddButton;
-    //private RadioGroup radioGroup;
+    private RadioGroup radioGroup;
     private String deckName;
+    private String deckDesp;
+    private String deckColor="";
 
 
 
@@ -36,8 +41,9 @@ public class AddDeckFragment extends Fragment {
         // Inflate the layout for this fragment
         final View v =  inflater.inflate(R.layout.add_deck_fragment_layout, container, false);
         mDeckName = (TextInputEditText) v.findViewById(R.id.added_deck_name);
-        //radioGroup = (RadioGroup) v.findViewById(R.id.radioGroupColor);
-        //radioGroup.clearCheck();
+        mDeckDesp = (TextInputEditText) v.findViewById(R.id.added_deck_desp);
+        radioGroup = (RadioGroup) v.findViewById(R.id.radioGroupColor);
+        radioGroup.clearCheck();
 
 
         mAddButton = (Button) v.findViewById(R.id.addToDeckBtn);
@@ -55,27 +61,55 @@ public class AddDeckFragment extends Fragment {
             }
         });
 
+        mDeckDesp.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-        /*radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    deckDesp = s.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 RadioButton rb = (RadioButton) radioGroup.findViewById(i);
-                if (null != rb && i > -1) {
-                    ConstraintLayout lay = (ConstraintLayout) v.findViewById(R.id.parent_layout);
-                    lay.findViewById(R.id.constraint).setBackgroundColor(Color.RED);
-                    //lay.setBackgroundColor(Color.RED);
-                    // lay.setBackgroundColor(Color.RED);
-                    //lay.setBackgroundColor(Color.parseColor("#FF7B82"));
-                    Toast.makeText(getContext(), i , Toast.LENGTH_SHORT).show();
+                int id = radioGroup.getCheckedRadioButtonId();
+                if (null != rb) {
+                    switch(id){
+                        case R.id.radioButton1:
+                            deckColor = "pink";
+                            break;
+                        case R.id.radioButton2:
+                            deckColor = "yellow";
+                            break;
+                        case R.id.radioButton3:
+                            deckColor = "purple";
+                            break;
+                        case R.id.radioButton4:
+                            deckColor = "orange";
+                            break;
+                        case R.id.radioButton5:
+                            deckColor = "green";
+                            break;
+                    }
                 }
             }
-        });*/
+        });
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Deck deck = new Deck(deckName);
-                DeckRepository.getInstance().addDeck(deck);
+                //Deck deck = new Deck(deckName);
+                DeckRepository.getInstance().addDeck(deckName, deckDesp, deckColor);
                 //DeckStorage.get(getActivity()).addDeck(deck);
                 getActivity().finish();
             }

@@ -1,9 +1,8 @@
 package com.example.flashcards;
 
-import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -12,22 +11,41 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DeckRepository {
     private static final String TAG = "DeckRepository";
     private static DeckRepository instance;
     private DatabaseReference databaseReference;
-    private ArrayList<Deck> decks = new ArrayList<>();
+    private List<Deck> decks = Collections.emptyList();
     public List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
 
-    public interface DataLoadedListener{
-        void onDataLoaded();
-    }
 
     protected DeckRepository(){
-        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("deck");
-        init();
+
+        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("decks");
+        //init();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Deck> deckList = new ArrayList<>();
+                for (DataSnapshot deckListSnapshot : dataSnapshot.getChildren()) {
+                    Deck deck = deckListSnapshot.getValue(Deck.class);
+                    deck.setUuid(deckListSnapshot.getKey());
+                    deckList.add(deck);
+                }
+
+                //Log.i("Deck data loaded size", String.valueOf(DeckRepository.this.dataLoadedListeners.size()));
+                DeckRepository.this.decks = deckList;
+                DeckRepository.this.dataLoadedListeners.forEach(x -> x.onDataLoaded());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e(TAG, "onCancelled" + databaseError.getMessage());
+            }
+        });
     }
     /*public static DeckRepository getInstance() {
         Log.i(" Deck get insts", "in get Instance");
@@ -37,31 +55,10 @@ public class DeckRepository {
         return instance;
     }*/
 
-    protected void init(){
+    /*protected void init(){
         //Log.i("Deck Repo", "in deck repo");
 
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                decks.clear();
-                for (DataSnapshot deckSnapshot : dataSnapshot.getChildren()) {
-                    Deck deck = deckSnapshot.getValue(Deck.class);
-                    deck.setUuid(deckSnapshot.getKey());
-                    decks.add(deck);
-                }
-
-                //Log.i("Deck data loaded size", String.valueOf(DeckRepository.this.dataLoadedListeners.size()));
-                DeckRepository.this.dataLoadedListeners.forEach(x -> x.onDataLoaded());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
+    }*/
 
     public static DeckRepository getInstance() {
         if (instance == null) {
@@ -70,18 +67,18 @@ public class DeckRepository {
         return instance;
     }
 
-    public DeckRepository(DatabaseReference databaseReference) {
+    /*public DeckRepository(DatabaseReference databaseReference) {
         this.databaseReference = databaseReference;
         init();
-    }
+    }*/
 
-    public ArrayList<Deck> getDecks() {
+    public List<Deck> getDecks() {
         return decks;
     }
 
-    public void addDeck(Deck deck) {
-        if(deck!=null){
-        databaseReference.push().setValue(deck);}
+    public void addDeck(String name, String desp, String color) {
+        Deck deck = new Deck(name, desp, color);
+        databaseReference.push().setValue(deck);
     }
 
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
@@ -95,5 +92,39 @@ public class DeckRepository {
 
     public void updateDeck(String key, Deck deck){
         databaseReference.child(key).setValue(deck);
+    }
+
+    public void addCardstoDeck(String key, Flashcard flashcard){
+        for(Deck deck: decks){
+            if(deck.getUuid().equals(key)){
+                Log.i("deck name", deck.getDeckName());
+                //deck.setFlashcards(new ArrayList<>(Flashcard));
+                deck.addFlashcard(flashcard);
+            }
+        }
+    }
+
+    public ArrayList<Flashcard> getCardOfDeck(String key){
+        for(Deck deck: decks){
+            if(deck.getUuid().equals(key)){
+
+                return deck.getFlashcards();
+            }
+        }
+        return null;
+    }
+
+    public Deck getDeck(String key){
+        for(Deck deck : decks){
+            if(deck.getUuid().equals(key)){
+
+                return deck;
+            }
+        }
+        return null;
+    }
+
+    public interface DataLoadedListener{
+        void onDataLoaded();
     }
 }
