@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutEdit"
+        android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -38,14 +38,14 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputDespLayoutEdit"
+        android:id="@+id/textInputDespLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEdit">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/added_deck_desp"
@@ -56,14 +56,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/addToDeckBtnEdit"
+        android:id="@+id/DeckBtnEdit"
         android:layout_width="wrap_content"
         android:layout_height="64dp"
-
         android:layout_marginStart="149dp"
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="42dp"
-        android:text="Add to Deck"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></Button>
@@ -78,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputDespLayoutEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputDespLayout" />
 
 
     <RadioGroup
@@ -96,22 +95,11 @@
             android:id="@+id/radioButton1"
             android:layout_width="43dp"
             android:layout_height="43dp"
-            android:layout_marginStart="16dp"
-            android:buttonTint="#FF7B82"
+            android:layout_marginStart="65dp"
+            android:buttonTint="@color/pink"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="286dp" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="6dp"
-            android:buttonTint="#81FFE6"
-            android:scaleX="2"
-            android:scaleY="2"
-            app:layout_constraintStart_toEndOf="@+id/radioButton1"
             tools:layout_editor_absoluteY="286dp" />
 
         <RadioButton
@@ -119,7 +107,7 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:buttonTint="#CAFF5C"
+            android:buttonTint="@color/purple"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toEndOf="@+id/radioButton2"
@@ -130,7 +118,7 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:buttonTint="#DD43FF"
+            android:buttonTint="@color/orange"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toEndOf="@+id/radioButton3"
@@ -141,23 +129,21 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:buttonTint="#FFCE82"
+            android:buttonTint="@color/green"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toEndOf="@+id/radioButton4"
             tools:layout_editor_absoluteY="286dp" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/radioButton2"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:layout_marginEnd="16dp"
-            android:buttonTint="#C3C5FF"
+            android:buttonTint="@color/yellow"
             android:scaleX="2"
             android:scaleY="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/radioButton5"
+            app:layout_constraintStart_toEndOf="@+id/radioButton1"
             tools:layout_editor_absoluteY="286dp" />
 
     </RadioGroup>

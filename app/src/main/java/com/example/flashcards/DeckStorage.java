@@ -1,11 +1,8 @@
 package com.example.flashcards;
 
 import android.content.Context;
-import android.icu.util.ULocale;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class DeckStorage {
     private static DeckStorage sDeckStorage;
@@ -23,12 +20,12 @@ public class DeckStorage {
     private DeckStorage(Context context)
     {
 
-        for(int i = 0; i < 10; ++i)
+        /*for(int i = 0; i < 10; ++i)
         {
             Deck d = new Deck("Deck number " + i);
             addDeck(d);
 
-        }
+        }*/
 
     }
 

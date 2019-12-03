@@ -26,7 +26,7 @@ public class EditDeckActivity extends AppCompatActivity {
         deckName = getIntent().getStringExtra("deckName");
 
         mDeckName = (TextInputEditText)findViewById(R.id.added_deck_name_edit);
-        mAddButton = (Button) findViewById(R.id.addToDeckBtnEdit);
+        mAddButton = (Button) findViewById(R.id.DeckBtnEdit);
 
         mDeckName.setText(deckName);
 
