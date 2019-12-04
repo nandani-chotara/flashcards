@@ -29,15 +29,10 @@ import java.util.List;
 
 public class DeckListFragment extends androidx.fragment.app.Fragment implements DeckAdapterListener{
 
-    //private ItemAdapter mAdapter;
     private List<Deck> decksList = new ArrayList<>();
     RecyclerView mrecyclerView;
     private ItemAdapter mAdapter;
     private DeckRepository deckRepository;
-    /*public DeckListFragment(ArrayList<String> mdeckNames) {
-
-        decks = mdeckNames;
-    }*/
 
     public static final String mypreference = "mypref";
     public static final String TEXT = "text";
@@ -48,7 +43,6 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
     public void onDeckSelected(Deck deck) {
 
     }
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +55,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.deck_list_fragment_layout, container,false);
 
-        //decksList = DeckStorage.get(getActivity()).getDecks();
+
         toolbar = (Toolbar)v.findViewById(R.id.toolbar);
         toolbar.setTitle("Decks");
         toolbar.inflateMenu(R.menu.toolbar_search_menu);
@@ -96,7 +90,6 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
             }
         });
 
-        //decksList = deckRepository.getDecks();
         mrecyclerView = v.findViewById(R.id.recycler_view);
         mrecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         Log.i("query item adapter","going in item adapter");
@@ -112,11 +105,6 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
            }
        });
 
-       /*deckRepository.addDataLoadedListener(() -> {
-        mAdapter.setDecks(deckRepository.getDecks());
-       });*/
-
-
         deckRepository.addDataLoadedListener(new DeckRepository.DataLoadedListener() {
             @Override
             public void onDataLoaded() {
@@ -124,38 +112,9 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
                 mAdapter.setDecks(deckRepository.getDecks());
             }
         });
+
         return v;
     }
-
-   /* @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-
-
-        toolbar.setTitle("Decks");
-        toolbar.inflateMenu(R.menu.toolbar_search_menu);
-        //inflater.inflate(R.menu.toolbar_search_menu, menu);
-
-        //SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        MenuItem menuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Type here to Search");
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                mAdapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                mAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
-
-        super.onCreateOptionsMenu(menu, inflater);
-    }*/
 
     @Override
     public void onResume()
@@ -164,8 +123,6 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
         super.onResume();
         mAdapter.notifyDataSetChanged();
     }
-
-
 
     private class ItemHolder extends RecyclerView.ViewHolder
     {
@@ -192,7 +149,6 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
                             Deck d = deckRepository.getDecks().get(getAdapterPosition());
                             switch(menuItem.getItemId()){
                                 case R.id.edit:
-                                    //String key = d.getUuid();
                                     String key=d.getUuid();
                                     Intent intent = new Intent(getContext(), EditDeckActivity.class);
                                     intent.putExtra("key", key);
@@ -201,12 +157,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
                                     startActivity(intent);
                                     return true;
                                 case R.id.delete:
-
-                                    //Deck deck = new Deck(deckName.getText().toString());
-                                    //DeckStorage.get(getActivity()).removeDeck(deck);
                                     DeckRepository.getInstance().removeDeck(d);
-                                    //decksList.remove(deck);
-
                                     mAdapter.notifyDataSetChanged();
                                 default:
                                     return false;
@@ -222,11 +173,9 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
             add_cardsBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //Toast.makeText(getActivity(), "ok", Toast.LENGTH_SHORT).show();
                     Deck d = deckRepository.getDecks().get(getAdapterPosition());
                     String key=d.getUuid();
                     Intent intent = new Intent(getActivity(), FlashcardRecyclerViewActivity.class);
-                    //intent.putExtra("arg_deck_name", d.getDeckName());
                     intent.putExtra("key",key);
                     startActivity(intent);
                 }
@@ -283,7 +232,6 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
 
         @Override
         public void onBindViewHolder(@NonNull ItemHolder holder, final int position) {
-            //String s = mDecks.get(position).getDeckName();
             holder.bind(mDeckListFull.get(position));
         }
 
