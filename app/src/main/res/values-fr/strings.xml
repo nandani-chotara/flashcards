@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Flashcards</string>
+    <!-- just for the sake of making it easier to keep track of, lets separate all the activity strings-->
+    <!-- Login activity-->
+
+    <string name="desc">Veuillez vous connecter pour continuer</string>
+
+    <string name="forgot">Oubliée?</string>
+    <string name="loginBtn">S\'identifier</string>
+    <string name="registerBtn">Vous n\'avez pas de compte? <font fgcolor="white">S\'inscrire</font></string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="usernameHint">Entrez le nom d\'utilisateur ici</string>
+    <string name="password">Mot de passe</string>
+    <string name="passwordHint">Entrez le mot de passe ici</string>
+    <string name="title_activity_deck">DeckActivity</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="title_activity_flash_card">FlashCardActivity</string>
+
+    <!-- Add/Edit Deck Activity -->
+    <string name="edit_deck_title">Modifier le pont</string>
+    <string name="deck_name_hint">Nom du pont</string>
+    <string name="add_deck_title">Ajouter un deck</string>
+    <string name="desc_hint">Description facultative</string>
+    <string name="edit_button">Modifier</string>
+    <string name="colour">Choisissez une couleur:</string>
+    <string name="add_deck_button">Ajouter un pont</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Ouvrir le tiroir de navigation</string>
+    <string name="navigation_drawer_close">Fermer le tiroir de navigation</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">En-tête de navigation</string>
+
+    <string name="menu_home">Accueil</string>
+    <string name="menu_gallery">Galerie</string>
+    <string name="menu_slideshow">Diaporama</string>
+    <string name="menu_tools">Outils</string>
+    <string name="menu_share">Partager</string>
+    <string name="menu_send">Envoyer</string>
+
+</resources>

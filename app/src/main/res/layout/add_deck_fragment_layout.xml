@@ -16,7 +16,7 @@
         android:shadowDx="2"
         android:shadowDy="2"
         android:shadowRadius="1.5"
-        android:text="Add a deck"
+        android:text="@string/add_deck_title"
         android:textColor="@color/colorPrimary"
         android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
             android:id="@+id/added_deck_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Deck Name"
+            android:hint="@string/deck_name_hint"
             android:maxLines="1"
             app:hintTextAppearance="@color/colorPrimary" />
 
@@ -66,7 +66,7 @@
             android:id="@+id/added_deck_desp"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:hint="Description Optional"
+            android:hint="@string/desc_hint"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +78,7 @@
         android:layout_marginEnd="150dp"
         android:layout_marginBottom="68dp"
         android:background="@drawable/rounded_corner"
-        android:text="Add to Deck"
+        android:text="@string/add_deck_button"
         android:textColor="#767676"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +94,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="60dp"
-        android:text="Pick a colour:"
+        android:text="@string/colour"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

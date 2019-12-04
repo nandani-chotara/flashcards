@@ -6,10 +6,8 @@
     <string name="desc">Please login to continue</string>
 
     <string name="forgot">Forgot?</string>
-    <string name="sign_up">Don\'t have an account? <font fgcolor="white">Sign up</font></string>
-
     <string name="loginBtn">Login</string>
-    <string name="registerBtn">Sign up</string>
+    <string name="registerBtn">Don\'t have an account? <font fgcolor="white">Sign up</font></string>
     <string name="username">Username</string>
     <string name="usernameHint">Enter username here</string>
     <string name="password">Password</string>
@@ -17,6 +15,15 @@
     <string name="title_activity_deck">DeckActivity</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_flash_card">FlashCardActivity</string>
+
+    <!-- Add/Edit Deck Activity -->
+    <string name="edit_deck_title">Edit Deck</string>
+    <string name="deck_name_hint">Deck Name</string>
+    <string name="add_deck_title">Add a Deck</string>
+    <string name="desc_hint">Optional Description</string>
+    <string name="edit_button">Edit</string>
+    <string name="colour">Pick a colour:</string>
+    <string name="add_deck_button">Add Deck</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
