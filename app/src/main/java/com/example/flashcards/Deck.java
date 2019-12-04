@@ -8,7 +8,7 @@ public class Deck implements Serializable {
     private String Uuid;
     private String description;
     private String deckColor;
-    private ArrayList<Flashcard> flashcards = new ArrayList<>();;
+    private ArrayList<Flashcard> flashcards = new ArrayList<>();
 
     public Deck() {
         // Default constructor required for Firebase

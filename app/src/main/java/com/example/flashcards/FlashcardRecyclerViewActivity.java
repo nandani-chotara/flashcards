@@ -1,28 +1,49 @@
 package com.example.flashcards;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class FlashcardRecyclerViewActivity extends AppCompatActivity {
 
-    private ArrayList<Flashcard> flashcards = new ArrayList<>();
+    private List<Flashcard> flashcards = Collections.emptyList();
+    public List<FlashcardRecyclerViewActivity.DataLoadedListener> dataLoadedListeners = new ArrayList<>();
     private RecyclerView rv;
     private Toolbar toolbar;
     private TextView deckSize;
+    private DatabaseReference databaseReference;
+
+
     FlashcardRVAdapter adapter;
     String key;
+    public void addDataLoadedListener(FlashcardRecyclerViewActivity.DataLoadedListener dataLoadedListener) {
+        this.dataLoadedListeners.add(dataLoadedListener);
+    }
+
+    public interface DataLoadedListener{
+        void onDataLoaded();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +56,37 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
             key = getIntent().getStringExtra("key");
         }
 
+        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("decks").child(key);
+        //init();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+                                                    @RequiresApi(api = Build.VERSION_CODES.N)
+                                                    @Override
+                                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                        List<Flashcard> flashcardsList = new ArrayList<>();
+                                                        for (DataSnapshot flashcardListSnapshot : dataSnapshot.getChildren()) {
+                                                            if (flashcardListSnapshot.getChildrenCount()==2) {
+                                                                Flashcard flashcard = flashcardListSnapshot.getValue(Flashcard.class);
+                                                                flashcardsList.add(flashcard);
+                                                            }
 
-        flashcards = DeckRepository.getInstance().getCardOfDeck(key);
-        Deck d = DeckRepository.getInstance().getDeck(key);
-        d.setFlashcards(flashcards);
+                                                        }
+                                                        FlashcardRecyclerViewActivity.this.flashcards = flashcardsList;
+                                                        FlashcardRecyclerViewActivity.this.dataLoadedListeners.forEach(x -> x.onDataLoaded());
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                    }
+                                                });
+
+
+        addDataLoadedListener(new DataLoadedListener() {
+            @Override
+            public void onDataLoaded() {
+                adapter.setFlashcards(flashcards);
+            }
+        });
 
         toolbar = findViewById(R.id.flashcard_toolbar);
         setSupportActionBar(toolbar);
@@ -97,35 +145,7 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
         toolbar.setTitle("Deck: " + deckname);
     }
 
-    private void initializeData() {
-        //flashcards = new ArrayList<>();
-        Flashcard card1 = new Flashcard();
-        card1.setQuestion("5+5");
-        card1.setAnswer("10");
-        Flashcard card2 = new Flashcard();
-        card2.setQuestion("What colour is the sky?");
-        card2.setAnswer("Blue");
-        Flashcard card3 = new Flashcard();
-        card3.setQuestion("What is the meaning of life?");
-        card3.setAnswer("Nothing");
-        Flashcard card4 = new Flashcard();
-        card4.setQuestion("It's great to be a _____");
-        card4.setAnswer("Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk" +
-                "Laurier Golden Hawk");
-        flashcards.add(card1);
-        flashcards.add(card2);
-        flashcards.add(card3);
-        flashcards.add(card4);
-    }
+
 
     private void initializeAdapter() {
         //get cards of the particular deck, may be use key

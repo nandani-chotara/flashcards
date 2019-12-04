@@ -5,8 +5,13 @@ import java.io.Serializable;
 public class Flashcard implements Serializable {
         private String question;
         private String answer;
+        public Flashcard(){
 
-        public Flashcard() {
+        }
+
+        public Flashcard(String question, String ans) {
+            this.question = question;
+            this.answer = ans;
         }
 
 
@@ -25,7 +30,6 @@ public class Flashcard implements Serializable {
         public void setAnswer(String answer) {
             this.answer = answer;
         }
-
 
 
 
