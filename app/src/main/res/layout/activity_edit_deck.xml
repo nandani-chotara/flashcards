@@ -3,16 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="116dp"
         android:gravity="center"
-        android:text="Add a deck"
-        android:textSize="34dp"
+        android:shadowColor="#aaa"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1.5"
+        android:text="@string/edit_deck_title"
+        android:textColor="@color/colorPrimary"
+        android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,9 +27,12 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        app:boxBackgroundColor="#EDF9F9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,15 +42,20 @@
             android:id="@+id/added_deck_name_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Deck Name"
-            android:maxLines="1" />
+            android:hint="@string/deck_name_hint"
+            android:maxLines="1"
+            app:hintTextAppearance="@color/colorPrimary" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputDespLayout"
-        android:layout_width="0dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        app:boxBackgroundColor="#EDF9F9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,29 +64,34 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edited_deck_desp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Description Optional"
+            android:layout_height="58dp"
+            android:hint="@string/desc_hint"
             android:maxLines="1" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/DeckBtnEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="64dp"
+        android:layout_width="112dp"
+        android:layout_height="47dp"
         android:layout_marginStart="149dp"
         android:layout_marginEnd="150dp"
-        android:layout_marginBottom="42dp"
-        android:text="Edit"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_corner"
+        android:text="@string/edit_button"
+        android:textColor="#767676"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></Button>
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Pick Color"
+        android:layout_height="20dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="60dp"
+        android:text="@string/colour"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -82,12 +101,12 @@
 
     <RadioGroup
         android:id="@+id/radioGroupColorEdit"
-        android:layout_width="400dp"
+        android:layout_width="wrap_content"
         android:layout_height="66dp"
-        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:orientation='horizontal'
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2">
 
@@ -95,7 +114,7 @@
             android:id="@+id/radioButton1"
             android:layout_width="43dp"
             android:layout_height="43dp"
-            android:layout_marginStart="65dp"
+            android:layout_marginStart="10dp"
             android:buttonTint="@color/pink"
             android:scaleX="2"
             android:scaleY="2"
@@ -148,5 +167,17 @@
 
     </RadioGroup>
 
+    <ImageView
+        android:id="@+id/cards"
+        android:layout_width="126dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/flashcards" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
