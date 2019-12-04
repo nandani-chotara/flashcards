@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "919065775094-o40prfr3ptaqougfcvkfjldb2pf09f62.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flashcards",
+            "certificate_hash": "75085e30761cefaae2e52e0b891881a66c43866b"
+          }
+        },
+        {
           "client_id": "919065775094-m1mlausstv32a25v57kbdecgp6n56cqb.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

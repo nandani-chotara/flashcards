@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">flashcards</string>
+    <string name="app_name">Flashcards</string>
     <!-- just for the sake of making it easier to keep track of, lets separate all the activity strings-->
     <!-- Login activity-->
 
