@@ -162,7 +162,9 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
     {
         Log.i("Deck in resume", "in resume");
         super.onResume();
+        mAdapter.setDecks(deckRepository.getDecks());
         mAdapter.notifyDataSetChanged();
+
     }
 
 
