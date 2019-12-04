@@ -75,7 +75,7 @@ public class FlashcardRVAdapter extends RecyclerView.Adapter<FlashcardRVAdapter.
         super.onAttachedToRecyclerView(recyclerView);
     }
 
-    public void setFlashcards(ArrayList<Flashcard> flashcards){
+    public void setFlashcards(List<Flashcard> flashcards){
         this.flashcards = flashcards;
         this.notifyDataSetChanged();
     }

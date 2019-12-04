@@ -7,15 +7,20 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class FlashcardAddActivity extends AppCompatActivity {
 
     Button flashcardAddBtn;
     TextInputEditText textInputEditQuestion, textInputEditAnswer;
     String key;
+    private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.databaseReference = FirebaseDatabase.getInstance().getReference().child("decks").child("-LvEhJViM8ycjsTTVv8G");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.flashcard_add);
 
@@ -35,6 +40,9 @@ public class FlashcardAddActivity extends AppCompatActivity {
                 newCard.setQuestion(textInputEditQuestion.getText().toString());
                 newCard.setAnswer(textInputEditAnswer.getText().toString());
                 DeckRepository.getInstance().addCardstoDeck(key, newCard);
+                DeckRepository.getInstance().addFlashcard(textInputEditQuestion.getText().toString(),textInputEditAnswer.getText().toString(), key);
+
+
                 finish();
             }
         });

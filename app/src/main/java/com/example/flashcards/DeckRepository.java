@@ -1,8 +1,10 @@
 package com.example.flashcards;
 
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,6 +29,7 @@ public class DeckRepository {
         this.databaseReference = FirebaseDatabase.getInstance().getReference().child("decks");
         //init();
         databaseReference.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Deck> deckList = new ArrayList<>();
@@ -79,6 +82,7 @@ public class DeckRepository {
     public void addDeck(String name, String desp, String color) {
         Deck deck = new Deck(name, desp, color);
         databaseReference.push().setValue(deck);
+        //databaseReference.push().child(deck.getUuid()).child("flashcards").child("question,answer")
     }
 
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
@@ -122,6 +126,12 @@ public class DeckRepository {
             }
         }
         return null;
+    }
+
+    public void addFlashcard(String question, String answer, String key) {
+        Flashcard flashcard = new Flashcard(question, answer);
+        Log.i("Deck Repo",key);
+        databaseReference.child(key).push().setValue(flashcard);
     }
 
     public interface DataLoadedListener{
