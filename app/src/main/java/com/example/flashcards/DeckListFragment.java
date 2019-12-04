@@ -19,10 +19,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
     RecyclerView mrecyclerView;
     private ItemAdapter mAdapter;
     private DeckRepository deckRepository;
+    private CoordinatorLayout coordinatorLayout;
     /*public DeckListFragment(ArrayList<String> mdeckNames) {
 
         decks = mdeckNames;
@@ -61,6 +64,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.deck_list_fragment_layout, container,false);
 
+        coordinatorLayout = (CoordinatorLayout)v.findViewById(R.id.coordinatorLayout);
         //decksList = DeckStorage.get(getActivity()).getDecks();
         toolbar = (Toolbar)v.findViewById(R.id.toolbar);
         toolbar.setTitle("Decks");
@@ -205,6 +209,9 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
                                     //Deck deck = new Deck(deckName.getText().toString());
                                     //DeckStorage.get(getActivity()).removeDeck(deck);
                                     DeckRepository.getInstance().removeDeck(d);
+                                    Snackbar snackbar = Snackbar
+                                            .make(coordinatorLayout, "Deck is deleted", Snackbar.LENGTH_LONG);
+                                    snackbar.show();
                                     //decksList.remove(deck);
 
                                     mAdapter.notifyDataSetChanged();
