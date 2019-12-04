@@ -77,8 +77,8 @@ public class DeckRepository {
         return decks;
     }
 
-    public void addDeck(String name) {
-        Deck deck = new Deck(name);
+    public void addDeck(String name, String desp, String color) {
+        Deck deck = new Deck(name, desp, color);
         databaseReference.push().setValue(deck);
     }
 

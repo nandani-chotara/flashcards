@@ -96,22 +96,11 @@
             android:id="@+id/radioButton1"
             android:layout_width="43dp"
             android:layout_height="43dp"
-            android:layout_marginStart="16dp"
-            android:buttonTint="#FF7B82"
+            android:layout_marginStart="65dp"
+            android:buttonTint="@color/pink"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="286dp" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="43dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="6dp"
-            android:buttonTint="#81FFE6"
-            android:scaleX="2"
-            android:scaleY="2"
-            app:layout_constraintStart_toEndOf="@+id/radioButton1"
             tools:layout_editor_absoluteY="286dp" />
 
         <RadioButton
@@ -119,7 +108,7 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:buttonTint="#CAFF5C"
+            android:buttonTint="@color/purple"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toEndOf="@+id/radioButton2"
@@ -130,7 +119,7 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:buttonTint="#DD43FF"
+            android:buttonTint="@color/orange"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toEndOf="@+id/radioButton3"
@@ -141,23 +130,21 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:buttonTint="#FFCE82"
+            android:buttonTint="@color/green"
             android:scaleX="2"
             android:scaleY="2"
             app:layout_constraintStart_toEndOf="@+id/radioButton4"
             tools:layout_editor_absoluteY="286dp" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/radioButton2"
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_marginStart="6dp"
-            android:layout_marginEnd="16dp"
-            android:buttonTint="#C3C5FF"
+            android:buttonTint="@color/yellow"
             android:scaleX="2"
             android:scaleY="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/radioButton5"
+            app:layout_constraintStart_toEndOf="@+id/radioButton1"
             tools:layout_editor_absoluteY="286dp" />
 
     </RadioGroup>
