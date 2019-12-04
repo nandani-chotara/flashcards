@@ -1,10 +1,12 @@
-package com.example.flashcards;
+package com.example.flashcards.Decks;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.example.flashcards.R;
 
 public class AddDeckActivity extends AppCompatActivity {
 

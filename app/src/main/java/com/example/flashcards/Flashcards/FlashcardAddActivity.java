@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.Flashcards;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.flashcards.DeckRepository;
+import com.example.flashcards.Models.Flashcard;
+import com.example.flashcards.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

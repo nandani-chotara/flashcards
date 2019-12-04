@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.Decks;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,9 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.flashcards.Models.Deck;
+import com.example.flashcards.DeckRepository;
+import com.example.flashcards.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class EditDeckActivity extends AppCompatActivity {
@@ -75,7 +78,7 @@ public class EditDeckActivity extends AppCompatActivity {
                 deck.setDescription(mDescription.getText().toString());
                 deck.setDeckColor(deckColor);
                 deck.setUuid(key);
-                new DeckRepository().updateDeck(key, deck);
+                DeckRepository.getInstance().updateDeck(key, deck);
                 finish();
 
             }

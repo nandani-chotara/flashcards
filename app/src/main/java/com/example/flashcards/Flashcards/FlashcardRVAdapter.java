@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.Flashcards;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.example.flashcards.Models.Flashcard;
+import com.example.flashcards.R;
+
 import java.util.List;
 
 public class FlashcardRVAdapter extends RecyclerView.Adapter<FlashcardRVAdapter.FlashcardViewHolder> {

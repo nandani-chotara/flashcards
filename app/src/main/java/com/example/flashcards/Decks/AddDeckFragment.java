@@ -1,4 +1,4 @@
-package com.example.flashcards;
+package com.example.flashcards.Decks;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.flashcards.DeckRepository;
+import com.example.flashcards.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -110,7 +112,7 @@ public class AddDeckFragment extends Fragment {
             public void onClick(View view) {
                 //Deck deck = new Deck(deckName);
                 DeckRepository.getInstance().addDeck(deckName, deckDesp, deckColor);
-                //DeckStorage.get(getActivity()).addDeck(deck);
+
                 getActivity().finish();
             }
         });

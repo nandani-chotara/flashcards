@@ -9,15 +9,15 @@
         android:roundIcon="@mipmap/flashcards_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditDeckActivity" />
+        <activity android:name=".Decks.EditDeckActivity" />
         <activity
-            android:name=".DeckActivity"
+            android:name=".Decks.DeckActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddDeckActivity" />
+        <activity android:name=".Decks.AddDeckActivity" />
         <activity
-            android:name=".FlashcardRecyclerViewActivity"
+            android:name=".Flashcards.FlashcardRecyclerViewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".FlashcardAddActivity" />
+        <activity android:name=".Flashcards.FlashcardAddActivity" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" >
@@ -30,7 +30,6 @@
         <activity android:name=".SplashActivity">
 
         </activity>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
