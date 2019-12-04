@@ -193,6 +193,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
                     String key=d.getUuid();
                     Intent intent = new Intent(getActivity(), FlashcardRecyclerViewActivity.class);
                     intent.putExtra("key",key);
+                    intent.putExtra("deckName", deckName.getText().toString());
                     startActivity(intent);
                 }
             });

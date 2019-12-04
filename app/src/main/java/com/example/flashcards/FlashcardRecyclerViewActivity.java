@@ -37,6 +37,7 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
 
     FlashcardRVAdapter adapter;
     String key;
+    String deckName;
     public void addDataLoadedListener(FlashcardRecyclerViewActivity.DataLoadedListener dataLoadedListener) {
         this.dataLoadedListeners.add(dataLoadedListener);
     }
@@ -55,6 +56,10 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
         if (getIntent().hasExtra("key")) {
             key = getIntent().getStringExtra("key");
         }
+        if (getIntent().hasExtra("deckName")) {
+            deckName = getIntent().getStringExtra("deckName");
+        }
+
 
         this.databaseReference = FirebaseDatabase.getInstance().getReference().child("decks").child(key);
         //init();
@@ -90,9 +95,7 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
 
         toolbar = findViewById(R.id.flashcard_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("testing");
-        getIncomingIntent();
-
+        getSupportActionBar().setTitle("Deck: "+ deckName);
 
         rv = findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -101,11 +104,7 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
 
         rv.addItemDecoration(new FlashcardMarginItem(20));
 
-        //initializeData();
         initializeAdapter();
-
-        deckSize = findViewById(R.id.deckSize);
-        deckSize.setText(String.valueOf(flashcards.size()));
 
         FloatingActionButton fabAddFlashcard = findViewById(R.id.fabAddFlashcard);
         fabAddFlashcard.setOnClickListener(new View.OnClickListener() {
@@ -118,12 +117,6 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
             }
         });
 
-        /*flashcardRepository.addDataLoadedListener(new DeckRepository.DataLoadedListener() {
-            @Override
-            public void onDataLoaded() {
-                adapter.setFlashcards();
-            }
-        });*/
     }
 
     @Override
@@ -133,19 +126,6 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
         super.onResume();
         adapter.notifyDataSetChanged();
     }
-
-    private void getIncomingIntent() {
-        if (getIntent().hasExtra("deck_name")) {
-            String deckname = getIntent().getStringExtra("deck_name");
-            setName(deckname);
-        }
-    }
-
-    private void setName(String deckname) {
-        toolbar.setTitle("Deck: " + deckname);
-    }
-
-
 
     private void initializeAdapter() {
         //get cards of the particular deck, may be use key
