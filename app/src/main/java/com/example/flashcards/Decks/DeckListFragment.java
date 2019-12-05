@@ -150,11 +150,56 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
             options_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position = getAdapterPosition();
                     PopupMenu popup = new PopupMenu(getContext(), view);
-                    popupMenuListener(popup, deckName, deckDesp, position);
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem menuItem) {
+                            Deck d = deckRepository.getDecks().get(getAdapterPosition());
+                            switch(menuItem.getItemId()){
+                                case R.id.edit:
+                                    String key=d.getUuid();
+                                    Intent intent = new Intent(getContext(), EditDeckActivity.class);
+                                    intent.putExtra("key", key);
+                                    intent.putExtra("deckName", deckName.getText().toString());
+                                    intent.putExtra("deckDescription", deckDesp.getText().toString());
+                                    startActivity(intent);
+                                    return true;
+                                case R.id.delete:
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                                    builder.setMessage(R.string.deleteDeckString);
+                                    builder.setTitle(R.string.delete_dialog_title);
+                                    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            // User clicked yes button
+                                            DeckRepository.getInstance().removeDeck(d);
+                                            mAdapter.notifyDataSetChanged();
+
+                                            Snackbar snackbar = Snackbar
+                                                    .make(coordinatorLayout, "Deck is deleted", Snackbar.LENGTH_LONG);
+                                            snackbar.show();
+                                        }
+                                    });
+                                    builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            // User cancelled the dialog
+                                            dialog.cancel();
+                                        }
+                                    });
+                                    builder.show();
+
+                                    mAdapter.notifyDataSetChanged();
+                                default:
+                                    return false;
+                            }
+                        }
+                    });
+                    popup.getMenuInflater().inflate(R.menu.popupmenu, popup.getMenu());
+                    popup.show();
                 }
             });
+
 
             add_cardsBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -170,7 +215,6 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //mAdapter.listener.onDeckSelected(mAdapter.mDeckListFull.get(getAdapterPosition()));
                     Deck d = deckRepository.getDecks().get(getAdapterPosition());
                     String key=d.getUuid();
                     Intent intent = new Intent(getActivity(), FlashcardRecyclerViewActivity.class);
@@ -201,59 +245,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
 
     }
 
-    public void popupMenuListener(PopupMenu popup, TextView deckName, TextView deckDesp, int position){
-        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem menuItem) {
-
-                Deck d = deckRepository.getDecks().get(position);
-
-                switch(menuItem.getItemId()){
-                    case R.id.edit:
-                        String key=d.getUuid();
-                        Intent intent = new Intent(getContext(), EditDeckActivity.class);
-                        intent.putExtra("key", key);
-                        intent.putExtra("deckName", deckName.getText().toString());
-                        intent.putExtra("deckDescription", deckDesp.getText().toString());
-                        startActivity(intent);
-                        return true;
-
-                    case R.id.delete:
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-                        builder.setMessage(R.string.deleteDeckString);
-                        builder.setTitle(R.string.delete_dialog_title);
-                        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // User clicked yes button
-                                DeckRepository.getInstance().removeDeck(d);
-                                mAdapter.notifyDataSetChanged();
-
-                                Snackbar snackbar = Snackbar
-                                        .make(coordinatorLayout, "Deck is deleted", Snackbar.LENGTH_LONG);
-                                snackbar.show();
-                            }
-                        });
-                        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-                        builder.show();
-                        mAdapter.notifyDataSetChanged();
-
-                    default:
-                        return false;
-                }
-            }
-        });
-
-        popup.getMenuInflater().inflate(R.menu.popupmenu, popup.getMenu());
-        popup.show();
-    }
-
-    private class ItemAdapter extends RecyclerView.Adapter<ItemHolder> implements Filterable {  //this class is responsible for creating deck item view, the above one.
+    private class ItemAdapter extends RecyclerView.Adapter<ItemHolder> implements Filterable {
 
         private List<Deck> mDecks;
         private List<Deck> mDeckListFull;
@@ -297,16 +289,12 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
                     List<Deck> filteredList = new ArrayList<>();
                     String charString = constraint.toString();
                     if(charString.isEmpty()){
-                        Log.i("query in filer", "in filter empty");
                         filteredList.addAll(mDeckListFull);
 
                     }
                     else{
-                        Log.i("query in filer", "in filter not empty");
                         for(Deck row : mDeckListFull){
-                            Log.i("query deck name", row.getDeckName());
                             if(row.getDeckName().toLowerCase().contains(charString.toLowerCase())){
-                                Log.i("query in filer", "row found");
                                 filteredList.add(row);
                             }
                         }
@@ -326,6 +314,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
             };
         }
     }
+
     @Override
     public void onDeckSelected(Deck deck) {
     }

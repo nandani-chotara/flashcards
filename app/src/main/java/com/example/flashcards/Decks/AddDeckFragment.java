@@ -29,8 +29,6 @@ public class AddDeckFragment extends Fragment {
     private String deckColor="";
 
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,9 +108,7 @@ public class AddDeckFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Deck deck = new Deck(deckName);
                 DeckRepository.getInstance().addDeck(deckName, deckDesp, deckColor);
-
                 getActivity().finish();
             }
         });

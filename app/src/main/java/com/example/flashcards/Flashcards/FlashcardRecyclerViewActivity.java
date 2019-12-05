@@ -120,12 +120,6 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
             }
         });
 
-        /*flashcardRepository.addDataLoadedListener(new DeckRepository.DataLoadedListener() {
-            @Override
-            public void onDataLoaded() {
-                adapter.setFlashcards();
-            }
-        });*/
     }
 
     @Override
