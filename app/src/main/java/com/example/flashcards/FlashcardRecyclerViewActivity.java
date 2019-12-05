@@ -93,9 +93,10 @@ public class FlashcardRecyclerViewActivity extends AppCompatActivity {
             }
         });
 
+        //update toolbar to show the name of deck currently in
         toolbar = findViewById(R.id.flashcard_toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Deck: "+ deckName);
+        getSupportActionBar().setTitle(deckName);
 
         rv = findViewById(R.id.rv);
         LinearLayoutManager llm = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);

@@ -81,6 +81,12 @@ public class DeckRepository {
         databaseReference.child(deck.getUuid()).removeValue();
     }
 
+    // removes flashcard
+    public void removeFlashcard(Flashcard flashcard) {
+
+
+    }
+
     public void updateDeck(String key, Deck deck){
         databaseReference.child(key).setValue(deck);
     }

@@ -61,6 +61,16 @@ public class Deck implements Serializable {
         return flashcards;
     }
 
+    public Flashcard getFlashcard(Flashcard flashcard) {
+        Flashcard f = new Flashcard();
+        for(Flashcard flash: flashcards){
+            if(flash.equals(flashcard)){
+
+            }
+        }
+        return f;
+    }
+
     public void setFlashcards(ArrayList<Flashcard> f){ this.flashcards = f;}
 
 }
