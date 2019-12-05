@@ -41,4 +41,10 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 
+    <string name="deleteDeckString">Deleting this deck will delete all it\'s cards. Do you still want to delete it?</string>
+    <string name="delete_dialog_title">Delete Deck</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="decks">Decks</string>
+
 </resources>

@@ -13,6 +13,8 @@ import android.widget.RadioGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.flashcards.DeckRepository;
+import com.example.flashcards.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 
@@ -25,8 +27,6 @@ public class AddDeckFragment extends Fragment {
     private String deckName;
     private String deckDesp;
     private String deckColor="";
-
-
 
 
     @Override
@@ -108,9 +108,7 @@ public class AddDeckFragment extends Fragment {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Deck deck = new Deck(deckName);
                 DeckRepository.getInstance().addDeck(deckName, deckDesp, deckColor);
-                //DeckStorage.get(getActivity()).addDeck(deck);
                 getActivity().finish();
             }
         });

@@ -75,7 +75,7 @@ public class EditDeckActivity extends AppCompatActivity {
                 deck.setDescription(mDescription.getText().toString());
                 deck.setDeckColor(deckColor);
                 deck.setUuid(key);
-                new DeckRepository().updateDeck(key, deck);
+                DeckRepository.getInstance().updateDeck(key, deck);
                 finish();
 
             }

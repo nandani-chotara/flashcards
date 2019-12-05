@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FlashcardRVAdapter extends RecyclerView.Adapter<FlashcardRVAdapter.FlashcardViewHolder> {

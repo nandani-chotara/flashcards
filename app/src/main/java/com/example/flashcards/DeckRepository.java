@@ -39,12 +39,10 @@ public class DeckRepository {
                     deckList.add(deck);
                 }
 
-                //Log.i("Deck data loaded size", String.valueOf(DeckRepository.this.dataLoadedListeners.size()));
+
                 DeckRepository.this.decks = deckList;
                 DeckRepository.this.dataLoadedListeners.forEach(x -> x.onDataLoaded());
-                /*for (DataLoadedListener dataLoadedListener : DeckRepository.this.dataLoadedListeners) {
-                    dataLoadedListener.onDataLoaded();
-                }*/
+
             }
 
             @Override
@@ -53,18 +51,7 @@ public class DeckRepository {
             }
         });
     }
-    /*public static DeckRepository getInstance() {
-        Log.i(" Deck get insts", "in get Instance");
-        if (instance == null) {
-            instance = new DeckRepository();
-        }
-        return instance;
-    }*/
 
-    /*protected void init(){
-        //Log.i("Deck Repo", "in deck repo");
-
-    }*/
 
     public static DeckRepository getInstance() {
         if (instance == null) {
@@ -73,10 +60,7 @@ public class DeckRepository {
         return instance;
     }
 
-    /*public DeckRepository(DatabaseReference databaseReference) {
-        this.databaseReference = databaseReference;
-        init();
-    }*/
+
 
     public List<Deck> getDecks() {
         return decks;
@@ -85,7 +69,7 @@ public class DeckRepository {
     public void addDeck(String name, String desp, String color) {
         Deck deck = new Deck(name, desp, color);
         databaseReference.push().setValue(deck);
-        //databaseReference.push().child(deck.getUuid()).child("flashcards").child("question,answer")
+
     }
 
     public void addDataLoadedListener(DataLoadedListener dataLoadedListener) {
@@ -105,7 +89,7 @@ public class DeckRepository {
         for(Deck deck: decks){
             if(deck.getUuid().equals(key)){
                 Log.i("deck name", deck.getDeckName());
-                //deck.setFlashcards(new ArrayList<>(Flashcard));
+
                 deck.addFlashcard(flashcard);
             }
         }
