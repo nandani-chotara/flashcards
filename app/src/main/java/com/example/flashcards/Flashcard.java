@@ -1,4 +1,4 @@
-package com.example.flashcards.Models;
+package com.example.flashcards;
 
 import java.io.Serializable;
 

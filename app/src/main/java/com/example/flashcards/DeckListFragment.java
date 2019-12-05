@@ -1,4 +1,4 @@
-package com.example.flashcards.Decks;
+package com.example.flashcards;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -25,17 +25,13 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.flashcards.Models.Deck;
-import com.example.flashcards.DeckRepository;
-import com.example.flashcards.Flashcards.FlashcardRecyclerViewActivity;
-import com.example.flashcards.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeckListFragment extends androidx.fragment.app.Fragment implements DeckAdapterListener{
+public class DeckListFragment extends androidx.fragment.app.Fragment implements DeckAdapterListener {
 
     private List<Deck> decksList = new ArrayList<>();
     private RecyclerView mrecyclerView;
@@ -251,7 +247,7 @@ public class DeckListFragment extends androidx.fragment.app.Fragment implements 
         private List<Deck> mDeckListFull;
         private DeckAdapterListener listener;
 
-        public ItemAdapter(List<Deck> tempDeck, DeckAdapterListener listener)
+        public ItemAdapter(List<Deck> tempDeck,DeckAdapterListener listener)
         {
             this.listener = listener;
             this.mDecks = tempDeck;

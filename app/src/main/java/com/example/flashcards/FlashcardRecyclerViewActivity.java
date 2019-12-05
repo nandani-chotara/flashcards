@@ -1,4 +1,4 @@
-package com.example.flashcards.Flashcards;
+package com.example.flashcards;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,8 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.flashcards.Models.Flashcard;
-import com.example.flashcards.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

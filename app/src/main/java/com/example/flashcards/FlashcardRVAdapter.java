@@ -1,4 +1,4 @@
-package com.example.flashcards.Flashcards;
+package com.example.flashcards;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +8,6 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.flashcards.Models.Flashcard;
-import com.example.flashcards.R;
 
 import java.util.List;
 

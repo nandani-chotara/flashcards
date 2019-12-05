@@ -6,8 +6,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import com.example.flashcards.Models.Deck;
-import com.example.flashcards.Models.Flashcard;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +24,7 @@ public class DeckRepository {
     public List<DataLoadedListener> dataLoadedListeners = new ArrayList<>();
 
 
-    public DeckRepository(){
+    protected DeckRepository(){
 
         this.databaseReference = FirebaseDatabase.getInstance().getReference().child("decks");
         //init();

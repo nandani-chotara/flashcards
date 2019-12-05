@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Decks.DeckActivity">
+    tools:context=".DeckActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/deck_recyclerView"

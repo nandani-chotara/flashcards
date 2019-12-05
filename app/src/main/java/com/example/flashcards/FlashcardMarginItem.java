@@ -1,4 +1,4 @@
-package com.example.flashcards.Flashcards;
+package com.example.flashcards;
 
 import android.graphics.Rect;
 import android.view.View;

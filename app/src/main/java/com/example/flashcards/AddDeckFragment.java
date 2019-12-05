@@ -1,4 +1,4 @@
-package com.example.flashcards.Decks;
+package com.example.flashcards;
 
 import android.os.Bundle;
 import android.text.Editable;
